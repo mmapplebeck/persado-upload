@@ -1,7 +1,7 @@
 const csv = require('fast-csv');
 const args = process.argv.slice(2);
 
-const stripNonKeyboardChars = (str) => {
+const replaceEmojis = (str) => {
 	return str.replace(/[^a-zA-Z0-9.!@?#"$%&:';()*\+,\/;\-=[\\\]\^_{|}<>~` ]/g, '_EMOJI_').replace(/[^\s]*_EMOJI_[^\s]*/g, '__');
 };
 
@@ -11,19 +11,20 @@ const getOrder = () => {
 		csv.fromPath(args[0], {
 			headers: true
 		}).on('data', (data) => {
-			order[stripNonKeyboardChars(data['Subject Line'])] = data.ID;
+			order[replaceEmojis(data['Subject Line'])] = data.ID;
 		}).on('end', () => {
 			resolve(order);
 		});
 	});
 };
+
 const orderData = (order) => {
 	let orderedData = [];
 	return new Promise((resolve, reject) => {
 		csv.fromPath(args[1], {
 			headers: true
 		}).on('data', (data) => {
-			const subject = stripNonKeyboardChars(data.Subject);
+			const subject = replaceEmojis(data.Subject);
 			orderedData.push({
 				'ID': order[subject],
 				'Subject Line': subject,
