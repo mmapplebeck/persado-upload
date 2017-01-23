@@ -1,7 +1,11 @@
 {
   "name": "persado-upload",
   "version": "1.0.1",
+  "main": "index.js",
   "dependencies": {
     "fast-csv": "^2.3.0"
+  },
+  "bin": {
+  	"persado": "./index.js"
   }
 }

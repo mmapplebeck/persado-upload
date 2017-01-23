@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const csv = require('fast-csv');
 const args = process.argv.slice(2);
 
