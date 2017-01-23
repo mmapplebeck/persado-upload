@@ -1,7 +1,7 @@
 {
-	"name": "persado-upload",
-	"version": "1.0.0",
-	"dependencies": {
-		"fast-csv": "^2.3.0"
-	}
+  "name": "persado-upload",
+  "version": "1.0.1",
+  "dependencies": {
+    "fast-csv": "^2.3.0"
+  }
 }
